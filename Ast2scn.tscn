@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Ast2.gd" type="Script" id=1]
+[ext_resource path="res://ast2.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 53.2017
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -27.9548, -42.645, -19.0458, -43.9813, -7.46408, -44.4268, 4.56305, -41.3086, 13.0266, -41.7541, 29.0628, -42.1995, 41.9808, -34.6269, 40.199, -29.727, 41.0899, -20.818, 44.6535, -11.0181, 51.7807, -4.7818, 52.2261, 7.24533, 46.8807, 21.9452, 41.5353, 28.6269, 37.5263, 33.0814, 32.6264, 31.745, 31.7355, 36.645, 27.7264, 36.1995, 22.8265, 41.9904, 12.1357, 42.4358, 0.554001, 53.5721, -4.34593, 51.7903, -8.35498, 55.3539, -20.8276, 54.9084, -43.9909, 37.5359, -48, 25.5088, -41.3182, 16.5998, -40.4273, 9.47258, -51.5636, 1.45449, -54.6817, -4.7818, -55.5726, -15.0271, -52.8999, -23.0452, -43.9909, -27.0543, -46.2182, -33.2906, -43.1, -33.2906, -43.1, -37.745 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 22.7191, 357.402 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 28.1787, 357.822 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "rotate"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LightOccluder2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+
+[node name="Ast2scn" type="Node2D"]
+
+[node name="Ast2" type="StaticBody2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Ast2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ast2"]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Ast2"]
+occluder = SubResource( 2 )
+
+[node name="PointArea" type="Area2D" parent="Ast2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ast2/PointArea"]
+position = Vector2( 0, -405.215 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ast2/PointArea"]
+position = Vector2( 0, 413.612 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ast2"]
+autoplay = "rotate"
+anims/rotate = SubResource( 5 )

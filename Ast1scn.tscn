@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ast1.png" type="Texture" id=1]
+[ext_resource path="res://Ast1.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 44.9501
+height = 34.7615
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -38.8057, 4.12389, -27.5113, -8.10055, -25.0802, -21.8878, -28.1512, -27.5065, -35.1316, -28.2296, -32.8159, -38.4833, -26.3575, -43.437, -19.7244, -40.7443, -20.3607, -34.2562, -10.107, -31.9405, 7.0688, -31.4504, 16.453, -32.842, 19.2326, -39.9675, 26.1263, -38.752, 30.182, -32.9597, 35.6568, -29.4558, 35.426, -22.3885, 26.1001, -18.4481, 23.8426, -5.64557, 24.5396, 7.67788, 34.9109, 23.7226, 34.5351, 28.7335, 42.7037, 34.2356, 40.2429, 42.4328, 35.9861, 49.2979, 24.2267, 49.7629, 16.6658, 40.814, 6.20993, 42.5243, -2.82581, 50.5776, -13.1948, 51.7955, -23.709, 50.957, -39.6704, 34.9419, -37.2679, 24.1959, -31.8514, 25.151, -30.172, 21.3854, -36.8052, 18.6926, -43.6988, 17.4771, -47.0291, 21.967, -51.2003, 19.7083, -51.7521, 8.44131, -47.148, -0.393398 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.3367, 150.843 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "rotation"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ast1Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ast1Coll:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 79.0, 80.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ast1Coll/LightOccluder2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+
+[node name="Ast1scn" type="Node2D"]
+
+[node name="Ast1" type="StaticBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="ast1Sprite" type="Sprite" parent="Ast1"]
+position = Vector2( 0, -200 )
+rotation = 1.02382
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+
+[node name="ast1Coll" type="CollisionShape2D" parent="Ast1"]
+position = Vector2( 9.7999, -200 )
+rotation = 1.39342
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Ast1/ast1Coll"]
+position = Vector2( 7.5569, 3.18324 )
+rotation = 1.02382
+occluder = SubResource( 2 )
+
+[node name="PointArea" type="Area2D" parent="Ast1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ast1/PointArea"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ast1/PointArea"]
+position = Vector2( 0, -404.715 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ast1"]
+autoplay = "rotation"
+anims/rotation = SubResource( 4 )

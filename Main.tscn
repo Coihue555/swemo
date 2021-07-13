@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://espacio.png" type="Texture" id=1]
+[ext_resource path="res://menu_Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/menu_Button.gd" type="Script" id=3]
+[ext_resource path="res://Swemo.png" type="Texture" id=4]
+
+[node name="Main" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -8, -8 )
+scale = Vector2( 2.78125, 1.75 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 584, 224 )
+texture = ExtResource( 4 )
+
+[node name="mnuNuevo" parent="." instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 400.0
+margin_right = 640.0
+margin_bottom = 432.0
+focus_neighbour_top = NodePath("../mnuSalir")
+focus_neighbour_bottom = NodePath("../mnuOpciones")
+text = "Nuevo Juego"
+script = ExtResource( 3 )
+reference_path = "res://World.tscn"
+start_focused = true
+
+[node name="mnuOpciones" parent="." instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 448.0
+margin_right = 640.0
+margin_bottom = 480.0
+focus_neighbour_top = NodePath("../mnuNuevo")
+focus_neighbour_bottom = NodePath("../mnuSalir")
+text = "Opciones"
+script = ExtResource( 3 )
+reference_path = "res://opciones.tscn"
+
+[node name="mnuSalir" parent="." instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 496.0
+margin_right = 640.0
+margin_bottom = 528.0
+focus_neighbour_top = NodePath("../mnuOpciones")
+focus_neighbour_bottom = NodePath("../mnuNuevo")
+text = "Salir"
+script = ExtResource( 3 )
